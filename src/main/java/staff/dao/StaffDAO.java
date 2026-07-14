@@ -53,7 +53,7 @@ public class StaffDAO {
 		try {
 			con = ConnectionManager.getConnection();
 
-			sql = "INSERT INTO staff (staffid, staffic, staffpassword, staffname, staffphonenum, staffrole, staffstatus, departmentid, managerid) VALUES (nextval(staff_id_seq), ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO staff (staffid, staffic, staffpassword, staffname, staffphonenum, staffrole, staffstatus, departmentid, managerid) VALUES (nextval('staff_id_seq'), ?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, staff.getStaffic());
 			ps.setString(2, staff.getStaffpassword());

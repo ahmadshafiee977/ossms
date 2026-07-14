@@ -230,7 +230,7 @@ public class RequestDAO {
 		try {
 			con = ConnectionManager.getConnection();
 
-			String seqSql = "SELECT nextval(request_id_seq)";
+			String seqSql = "SELECT nextval('request_id_seq')";
 			ps = con.prepareStatement(seqSql);
 			rs = ps.executeQuery();
 			if (rs.next()) {
