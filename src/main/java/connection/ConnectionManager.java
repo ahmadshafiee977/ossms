@@ -1,39 +1,38 @@
 package connection;
 
-/*
- * Author: FES (March 2024)
- */
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class ConnectionManager {
-	static Connection con;
-	// define and initialize database driver
-	private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
-	// define and initialize database url
-	private static final String DB_CONNECTION = "jdbc:oracle:thin:@//localhost:1521/freepdb1";
-	// define and initialize database user
-	private static final String DB_USER = "SUPRA";
-	// define and initialize database password
-	private static final String DB_PASSWORD = "oracle";
+
+	private static Connection con;
 
 	public static Connection getConnection() {
 
 		try {
-			// 1. load the driver
-			Class.forName(DB_DRIVER);
 
-			try {
-				// 2. create connection
-				con = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
-				System.out.println("Connected");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (ClassNotFoundException e) {
+			String databaseUrl = System.getenv("DATABASE_URL");
+
+			// Running on Heroku (PostgreSQL)
+
+			URI dbUri = new URI(databaseUrl);
+
+			String username = dbUri.getUserInfo().split(":")[0];
+			String password = dbUri.getUserInfo().split(":")[1];
+
+			String jdbcUrl = "jdbc:postgresql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
+
+			Class.forName("org.postgresql.Driver");
+
+			con = DriverManager.getConnection(jdbcUrl, username, password);
+
+			System.out.println("Connected to Heroku PostgreSQL");
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return con;
 	}
 }
