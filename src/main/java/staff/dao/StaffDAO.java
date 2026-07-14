@@ -166,7 +166,7 @@ public class StaffDAO {
 			con = ConnectionManager.getConnection();
 			sql = "SELECT s.*, m.staffname AS managername, d.departmentname FROM staff s"
 					+ " FULL OUTER JOIN staff m ON s.managerid = m.staffid "
-					+ "LEFT JOIN department d ON s.departmentid = d.departmentid WHERE s.staffid = ?";
+					+ "JOIN department d ON s.departmentid = d.departmentid WHERE s.staffid = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, staffid);
 			rs = ps.executeQuery();
