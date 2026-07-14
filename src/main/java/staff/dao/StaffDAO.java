@@ -206,7 +206,7 @@ public class StaffDAO {
 		try {
 			con = ConnectionManager.getConnection();
 			// sql = "SELECT * FROM request WHERE requesterid = ?";
-			sql = "SELECT * FROM staff s " + "JOIN department d " + "ON d.departmentid = s.departmentid";
+			sql = "SELECT * FROM staff s " + "LEFT JOIN department d " + "ON d.departmentid = s.departmentid";
 			ps = con.prepareStatement(sql);
 
 			rs = ps.executeQuery();
