@@ -51,10 +51,12 @@ public class StaffDAO {
 	public static void addStaff(Staff staff) {
 
 		try {
+			System.out.println("1. Getting connection...");
 			con = ConnectionManager.getConnection();
-
+			System.out.println("2. Preparing statement...");
 			sql = "INSERT INTO staff (staffid, staffic, staffpassword, staffname, staffphonenum, staffrole, staffstatus, departmentid, managerid) VALUES (nextval('staff_id_seq'), ?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = con.prepareStatement(sql);
+			System.out.println("3. Setting parameters...");
 			ps.setString(1, staff.getStaffic());
 			ps.setString(2, staff.getStaffpassword());
 			ps.setString(3, staff.getStaffname());
@@ -69,9 +71,11 @@ public class StaffDAO {
 				ps.setInt(8, staff.getManagerid());
 			}
 			// ps.setInt(8, staff.getManagerid());
+			System.out.println("4. Executing insert...");
+			// ps.executeUpdate();
+			int rows = ps.executeUpdate();
 
-			ps.executeUpdate();
-
+			System.out.println("Rows inserted = " + rows);
 			con.close();
 			ps.close();
 
