@@ -42,7 +42,8 @@ public class StaffDAO {
 			con.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		return staff;
 	}

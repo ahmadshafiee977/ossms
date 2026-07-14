@@ -55,16 +55,12 @@
         <version>0.4</version>
     </dependency>
 
-    <dependency>
-        <groupId>com.oracle.database.jdbc</groupId>
-        <artifactId>ojdbc11</artifactId>
-        <version>23.7.0.25.01</version>
-    </dependency>
+    
 	<dependency>
 	
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-</dependency>
+	    <groupId>org.postgresql</groupId>
+	    <artifactId>postgresql</artifactId>
+	</dependency>
 </dependencies>
 
    <build>
