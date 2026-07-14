@@ -40,7 +40,7 @@ public class RequestDAO {
 					+ "    SUM(CASE WHEN ri.status = 'TOLAK' THEN ri.requestedamount ELSE 0 END) AS total_items_tolak, "
 					+ "    (SELECT SUM(currentstock * itemprice) FROM item) AS current_stock_value " + "FROM request r "
 					+ "JOIN request_item ri ON r.requestid = ri.requestid "
-					+ "WHERE EXTRACT(YEAR FROM r.submitteddate) = EXTRACT(YEAR FROM SYSDATE) "
+					+ "WHERE EXTRACT(YEAR FROM r.submitteddate) = EXTRACT(YEAR FROM CURRENT_DATE) "
 					+ "GROUP BY TO_CHAR(r.submitteddate, 'Q') " + "ORDER BY TO_CHAR(r.submitteddate, 'Q')";
 
 			ps = con.prepareStatement(sql);
