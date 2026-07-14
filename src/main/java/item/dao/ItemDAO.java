@@ -21,7 +21,7 @@ public class ItemDAO {
 		try {
 			con = ConnectionManager.getConnection();
 
-			sql = "INSERT INTO item (itemid, itemname, itemdesc, itemprice, itemunit, maximumstock, minimumstock, currentstock, itemstatus) VALUES(item_seq.nextval, ?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO item (itemid, itemname, itemdesc, itemprice, itemunit, maximumstock, minimumstock, currentstock, itemstatus) VALUES(nextval(item_id_seq), ?,?,?,?,?,?,?,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, item.getItemname());
 			ps.setString(2, item.getItemdesc());
